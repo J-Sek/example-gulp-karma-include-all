@@ -4,7 +4,7 @@ Example project using Require.js and file path patterns.
 Prooving it is possible to get 0% coverage and not worry about
 confliciting implementations.
 
-> Note: you **don't need** to use Require.js accross the solution.
+> Note: you **don't need** to use Require.js across the solution.
 
 ---
 
@@ -38,10 +38,12 @@ or:
 - Configure require.js
 
 ```
-var tests = window.__karma__.files
-    .filter(function(file) {
-        return /Spec\.js$/.test(file);
-    });
+var tests = [];
+for (var file in window.__karma__.files) {
+    if (/Spec\.js$/.test(file)) {
+        tests.push(file);
+    }
+}
 
 require(['/base/Scripts/App/Calc.js']);
 
