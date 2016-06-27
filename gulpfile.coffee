@@ -1,10 +1,27 @@
 gulp = require('gulp')
-gulp.task 'help', require('gulp-task-listing')
+karma = require('karma')
+$ = require('gulp-load-plugins')()
 
-require './Config/Tools/gulp-for-scripts'
-#require './Config/Tools/gulp-for-templates'
-#require './Config/Tools/gulp-for-analyze-stylesheets'
+gulp.task 'unit:coverage', (done) ->
 
-gulp.task 'default', [
-  'check_scripts'
-]
+    new karma.Server({
+            configFile:  __dirname + '/karma.conf.js',
+            action: 'run',
+            singleRun: true,
+            preprocessors: {
+                'Scripts/App/**/*.js': ['coverage']
+            },
+            reporters: ['progress', 'coverage'],
+            coverageReporter: {
+                includeAllSources: true
+                type : 'html',
+                dir : 'coverage/',
+                subdir: '.'
+            }
+        }, done)
+        .on('error', (err) -> throw err)
+        .start()
+
+gulp.task 'coverage', ['unit:coverage'], ->
+    gulp.src('./coverage/index.html')
+        .pipe $.open()

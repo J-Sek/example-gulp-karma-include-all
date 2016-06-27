@@ -9,14 +9,9 @@ module.exports = function(config) {
     files: [
         "Scripts/3rdParty/jQuery/jquery-1.11.3.min.js",
         {pattern: 'Scripts/App/**/*.js', included: false},
-        {pattern: 'Scripts/Test//**/*Spec.js', included: false},
-        "Scripts/App/AllForTests.js",
+        {pattern: 'Scripts/Test/**/*Spec.js', included: false},
         "Scripts/Test/AppSpecs.js"
     ],
-
-    // client: {
-    //   args: ['--grep', 'Ext'],
-    // },
 
     exclude: [
     ],
@@ -41,8 +36,7 @@ module.exports = function(config) {
     logLevel: config.LOG_INFO,
     autoWatch: false,
     browsers: ['PhantomJS'],
-    // browsers: ['Chrome'],
-    singleRun: false,
+    singleRun: true,
     concurrency: Infinity
   })
 }
