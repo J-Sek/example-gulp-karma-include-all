@@ -24,6 +24,10 @@ or:
 
     gulp coverage
 
+compare with:
+
+    gulp coverage_tested
+
 ---
 
 ### How is it working?
