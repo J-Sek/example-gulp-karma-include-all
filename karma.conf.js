@@ -12,23 +12,11 @@ module.exports = function(config) {
         {pattern: 'Scripts/Test/**/*Spec.js', included: false},
         "Scripts/Test/AppSpecs.js"
     ],
-
-    exclude: [
-    ],
+    
+    reporters: ['progress', 'coverage'],
 
     preprocessors: {
         'Scripts/App/**/*.js': ['coverage']
-    },
-
-    reporters: ['progress', 'coverage'],
-
-    coverageReporter: {
-        includeAllSources: true,
-        dir: 'coverage',
-        reporters: [
-            { type: 'lcov', subdir: 'report-lcov' }, //https://www.npmjs.com/package/gulp-lcov-to-html
-            { type: 'lcovonly', subdir: '.', file: 'report-lcovonly.txt' }
-        ]
     },
 
     port: 9876,
